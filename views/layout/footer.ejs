@@ -1,0 +1,133 @@
+      </main>
+    </div>
+
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="mobile-nav-overlay" id="mobileNavOverlay">
+      <div class="mobile-nav">
+        <div class="mobile-nav-header">
+          <span>Menu</span>
+          <button class="mobile-nav-close" id="mobileNavClose">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <a href="/" class="mobile-nav-link">
+          <i class="fas fa-home"></i>
+          <span>Home</span>
+        </a>
+        <a href="/admin" class="mobile-nav-link">
+          <i class="fas fa-plus-circle"></i>
+          <span>Create</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <p class="copyright">
+        &copy; <span id="year"></span> Fik Snipset. All Rights Reserved.
+      </p>
+      <div class="contact-links">
+        <a href="<%= typeof whatsapp !== 'undefined' ? whatsapp : 'https://whatsapp.com' %>" target="_blank" class="contact-link">
+          <i class="fab fa-whatsapp"></i>
+          <span>WhatsApp Channel</span>
+        </a>
+        <a href="<%= typeof telegram !== 'undefined' ? telegram : 'https://telegram.org' %>" target="_blank" class="contact-link">
+          <i class="fab fa-telegram"></i>
+          <span>Telegram Channel</span>
+        </a>
+        <a href="<%= typeof instagram !== 'undefined' ? instagram : 'https://instagram.com' %>" target="_blank" class="contact-link">
+          <i class="fab fa-instagram"></i>
+          <span>Instagram</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scrollTop">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-go.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-rust.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-tsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+  <script>
+    (function() {
+      var yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      var mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      var mobileNavOverlay = document.getElementById('mobileNavOverlay');
+      var mobileNavClose = document.getElementById('mobileNavClose');
+
+      function openMenu() {
+        if (mobileNavOverlay) mobileNavOverlay.classList.add('active');
+        if (mobileMenuBtn) mobileMenuBtn.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMenu() {
+        if (mobileNavOverlay) mobileNavOverlay.classList.remove('active');
+        if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          var isActive = mobileNavOverlay && mobileNavOverlay.classList.contains('active');
+          if (isActive) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
+        });
+      }
+
+      if (mobileNavClose) {
+        mobileNavClose.addEventListener('click', closeMenu);
+      }
+
+      if (mobileNavOverlay) {
+        mobileNavOverlay.addEventListener('click', function(e) {
+          if (e.target === this) closeMenu();
+        });
+      }
+
+      var scrollTop = document.getElementById('scrollTop');
+      if (scrollTop) {
+        window.addEventListener('scroll', function() {
+          if (window.scrollY > 300) {
+            scrollTop.classList.add('visible');
+          } else {
+            scrollTop.classList.remove('visible');
+          }
+        });
+        scrollTop.addEventListener('click', function() {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+    })();
+  </script>
+  <script src="/js/main.js"></script>
+</body>
+</html>

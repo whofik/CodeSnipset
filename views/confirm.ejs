@@ -1,0 +1,60 @@
+<%- include('./layout/header') %>
+
+<div class="animate-load">
+  <a href="/" class="back-btn">
+    <i class="fas fa-arrow-left"></i>
+    Back
+  </a>
+
+  <% if (typeof error !== 'undefined' && error) { %>
+    <div class="card card-padded alert alert-error">
+      <i class="fas fa-exclamation-circle"></i>
+      <span><%= error %></span>
+    </div>
+  <% } %>
+
+  <div class="card card-padded" style="max-width: 550px; margin: 0 auto;">
+    <div class="empty-icon" style="margin-bottom: 24px; border-color: var(--danger); animation: none;">
+      <i class="fas fa-exclamation-triangle" style="color: var(--danger);"></i>
+    </div>
+    
+    <h2 class="page-title" style="font-size: 22px; justify-content: center; margin-bottom: 12px; flex-direction: column;">
+      <span>Delete Snippet?</span>
+    </h2>
+    
+    <div style="background: var(--bg-secondary); border: 2px solid var(--border-light); padding: 18px; margin: 20px 0; border-radius: 0;">
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px; text-align: center;">About to delete:</p>
+      <p style="font-size: 18px; font-weight: 700; color: var(--border); font-family: 'Ubuntu Mono', monospace; text-align: center; margin: 0;">
+        <%= typeof filename !== 'undefined' ? filename : '' %>
+      </p>
+    </div>
+    
+    <div class="alert alert-error" style="margin-bottom: 28px;">
+      <i class="fas fa-shield-alt"></i>
+      <span>This action cannot be undone. All code and metadata will be permanently deleted.</span>
+    </div>
+
+    <form id="deleteForm" method="POST" action="/actions/delete/<%= typeof gistId !== 'undefined' ? gistId : '' %>">
+      <div class="form-group">
+        <label class="form-label">
+          <i class="fas fa-key"></i> Enter Secret Key
+        </label>
+        <input type="password" name="secret_key" placeholder="••••••••" required
+          class="form-input" autocomplete="off">
+      </div>
+
+      <div style="display: flex; gap: 12px; margin-top: 24px;">
+        <a href="/" class="btn btn-outline" style="flex: 1;">
+          <i class="fas fa-times"></i>
+          Cancel
+        </a>
+        <button type="submit" class="btn btn-danger" style="flex: 1;">
+          <i class="fas fa-trash"></i>
+          Delete Forever
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<%- include('./layout/footer') %>

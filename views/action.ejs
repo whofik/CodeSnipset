@@ -1,0 +1,78 @@
+<%- include('./layout/header') %>
+
+<div class="animate-load">
+  <a href="/" class="back-btn">
+    <i class="fas fa-arrow-left"></i>
+    Back
+  </a>
+
+  <% if (typeof error !== 'undefined' && error) { %>
+    <div class="card card-padded alert alert-error">
+      <i class="fas fa-exclamation-circle"></i>
+      <span><%= error %></span>
+    </div>
+  <% } %>
+
+  <div class="snippet-info-card">
+    <div class="snippet-icon-large">
+      <i class="fas fa-file-code"></i>
+    </div>
+    <div class="snippet-info-text">
+      <h1 class="snippet-title"><%= typeof filename !== 'undefined' ? filename : 'Unknown' %></h1>
+      <p class="snippet-id"><%= typeof gistId !== 'undefined' ? gistId : '' %></p>
+    </div>
+  </div>
+
+  <div class="actions-list">
+    <a href="/admin?edit=<%= typeof filename !== 'undefined' ? encodeURIComponent(filename) : '' %>" class="action-item">
+      <div class="action-icon edit">
+        <i class="fas fa-edit"></i>
+      </div>
+      <div class="action-text">
+        <span class="action-label">Edit Snippet</span>
+        <span class="action-desc">Modify the code, description, or filename</span>
+      </div>
+      <i class="fas fa-chevron-right action-arrow"></i>
+    </a>
+
+    <a href="/actions/delete/<%= typeof gistId !== 'undefined' ? gistId : '' %>?filename=<%= typeof filename !== 'undefined' ? encodeURIComponent(filename) : '' %>" class="action-item delete">
+      <div class="action-icon delete">
+        <i class="fas fa-trash"></i>
+      </div>
+      <div class="action-text">
+        <span class="action-label">Delete Snippet</span>
+        <span class="action-desc">Permanently remove this snippet</span>
+      </div>
+      <i class="fas fa-chevron-right action-arrow"></i>
+    </a>
+  </div>
+
+  <div class="card card-padded mt-8" style="text-align: center;">
+    <h3 style="font-size: 16px; font-weight: 700; color: var(--border); margin-bottom: 12px;">
+      <i class="fas fa-info-circle"></i> Quick Actions
+    </h3>
+    <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+      <a href="/files/<%= typeof filename !== 'undefined' ? encodeURIComponent(filename) : '' %>" class="btn btn-outline" style="font-size: 13px; padding: 10px 16px;">
+        <i class="fas fa-eye"></i>
+        View Code
+      </a>
+      <button type="button" onclick="copyUrl()" class="btn btn-outline" style="font-size: 13px; padding: 10px 16px;">
+        <i class="fas fa-link"></i>
+        Copy URL
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+function copyUrl() {
+  var url = window.location.origin + '/files/<%= typeof filename !== 'undefined' ? encodeURIComponent(filename) : '' %>';
+  navigator.clipboard.writeText(url).then(function() {
+    showToast('URL copied!');
+  }).catch(function() {
+    showToast('Failed to copy URL', true);
+  });
+}
+</script>
+
+<%- include('./layout/footer') %>

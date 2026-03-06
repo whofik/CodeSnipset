@@ -1,0 +1,83 @@
+<%- include('./layout/header') %>
+
+<div class="animate-load">
+  <div class="hero-section">
+    <p class="hero-text">Halooo! Welcome To</p>
+    <h1 class="hero-title">Fik Snipset</h1>
+    <p class="hero-desc">Sebuah Code Snipset untuk menyimpan dan share snipset, UI/UX minimalis dan responsife.</p>
+    
+    <div class="hero-cta">
+      <a href="/admin" class="btn btn-black">
+        <i class="fas fa-plus"></i>
+        Create Snippet
+      </a>
+      <a href="#snippets" class="btn btn-outline">
+        <i class="fas fa-folder"></i>
+        Browse All
+      </a>
+    </div>
+  </div>
+
+  <% if (typeof error !== 'undefined' && error) { %>
+    <div class="card card-padded alert alert-error mt-8">
+      <i class="fas fa-exclamation-circle"></i>
+      <span><%= error %></span>
+    </div>
+  <% } %>
+
+  <% if (snippets && snippets.length > 0) { %>
+    <div class="snippet-list" id="snippets">
+      <div class="section-header">
+        <h2 class="section-title">
+          <i class="fas fa-folder"></i>
+          Available Snippets
+        </h2>
+        <span class="section-badge"><%= snippets.length %> Total</span>
+      </div>
+
+      <% snippets.forEach((snippet) => { %>
+        <div class="card snippet-card">
+          <div class="snippet-card-wrapper">
+            <a href="/files/<%= encodeURIComponent(snippet.filename) %>" class="snippet-card-link">
+              <div class="snippet-card-content">
+                <div class="snippet-icon">
+                  <i class="fas fa-file-code"></i>
+                </div>
+                <div class="snippet-info">
+                  <div class="snippet-name">
+                    <%= snippet.filename %>
+                    <span class="snippet-lang"><%= snippet.language %></span>
+                  </div>
+                  <div class="snippet-desc"><%= snippet.description %></div>
+                </div>
+              </div>
+            </a>
+            <div class="snippet-meta">
+              <span class="snippet-date">
+                <i class="far fa-clock"></i>
+                <%= snippet.updatedAt %>
+              </span>
+              <a href="/actions/<%= snippet.id %>?filename=<%= encodeURIComponent(snippet.filename) %>" class="btn-action-dots" title="More actions">
+                <i class="fas fa-ellipsis-v"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+  <% } else { %>
+    <div class="card empty-state mt-8">
+      <div class="empty-icon">
+        <i class="fas fa-folder-open"></i>
+      </div>
+      <h3 class="empty-title">No snippets yet</h3>
+      <p class="empty-desc">Be the first to create a snippet and share your code with the world</p>
+      <a href="/admin" class="btn btn-black">
+        <i class="fas fa-plus"></i>
+        Create Snippet
+      </a>
+    </div>
+  <% } %>
+</div>
+
+<%- include('./layout/footer') %>

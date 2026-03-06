@@ -1,0 +1,31 @@
+{
+  "name": "fik-snipset",
+  "version": "1.0.0",
+  "description": "Website untuk share snippet code dengan backend Express.js dan GitHub Gist API",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node app.js",
+    "build:css": "node build-tailwind.js"
+  },
+  "keywords": [
+    "snippet",
+    "code",
+    "express",
+    "gist"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.1.5",
+    "helmet": "^7.1.0",
+    "tailwindcss": "^4.2.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

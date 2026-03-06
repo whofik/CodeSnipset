@@ -1,0 +1,110 @@
+<%- include('./layout/header') %>
+
+<div class="animate-load">
+  <div class="error-page">
+    <div class="error-code">404</div>
+    <div class="error-icon">
+      <i class="fas fa-file-code"></i>
+    </div>
+    <h1 class="error-title">Page Not Found</h1>
+    <p class="error-desc">The snippet or page you're looking for doesn't exist or has been moved.</p>
+    <div class="error-actions">
+      <a href="/" class="btn btn-black">
+        <i class="fas fa-home"></i>
+        Go Home
+      </a>
+      <a href="/admin" class="btn btn-outline">
+        <i class="fas fa-plus"></i>
+        Create Snippet
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+.error-page {
+  text-align: center;
+  padding: 60px 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.error-code {
+  font-size: 120px;
+  font-weight: 800;
+  color: var(--border);
+  line-height: 1;
+  margin-bottom: 20px;
+  letter-spacing: -5px;
+}
+
+.error-icon {
+  width: 80px;
+  height: 80px;
+  border: 2px solid var(--border);
+  margin: 0 auto 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  background: #fff;
+}
+
+.error-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--border);
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.error-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.error-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.error-actions .btn {
+  flex: 1;
+  min-width: 140px;
+}
+
+@media (max-width: 480px) {
+  .error-code {
+    font-size: 80px;
+    letter-spacing: -3px;
+  }
+
+  .error-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+
+  .error-title {
+    font-size: 20px;
+  }
+
+  .error-desc {
+    font-size: 13px;
+  }
+
+  .error-actions {
+    flex-direction: column;
+  }
+
+  .error-actions .btn {
+    width: 100%;
+  }
+}
+</style>
+
+<%- include('./layout/footer') %>
