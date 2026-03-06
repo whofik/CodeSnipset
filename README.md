@@ -6,15 +6,18 @@ Website untuk share snippet code dengan backend Express.js dan data snippet diam
 
 ### 1. Install Dependencies
 ```bash
-npm install --no-bin-links
+npm install
 ```
 
 ### 2. Configure Environment
 Edit `.env` file:
 ```
-PORT=8080
-GITHUB_TOKEN=your_github_token_here
-SECRET_KEY=your_secret_key_here
+port=8080
+token=
+secretKey=
+whatsapp=https://whatsapp.com/channel/0029Vb6Jjyf8KMqtrGJZJy0y  # utk di footer y
+telegram=https://t.me/ShareCodesfik
+instagram=https://www.instagram.com/fmds_whps?igsh=MWU0d2Y2dWduMWY2bg==
 ```
 
 ### 3. Start Server
