@@ -12,10 +12,10 @@ npm install
 ### 2. Configure Environment
 Edit `.env` file:
 ```
-port=8080
-token=
-secretKey=
-whatsapp=https://whatsapp.com/channel/0029Vb6Jjyf8KMqtrGJZJy0y  # utk di footer y
+port=8080   # port nya
+token=    # token github
+secretKey=   # bebas mw apa aja keys nya, fungsi nya kayak klo mw akses admin hrs msukin secret key dh itu aka y
+whatsapp=https://whatsapp.com/channel/0029Vb6Jjyf8KMqtrGJZJy0y  # utk di footer
 telegram=https://t.me/ShareCodesfik
 instagram=https://www.instagram.com/fmds_whps?igsh=MWU0d2Y2dWduMWY2bg==
 ```
