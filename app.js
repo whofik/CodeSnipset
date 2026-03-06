@@ -1,6 +1,5 @@
 require('dotenv').config();
 const express = require('express');
-const helmet = require('helmet');
 const path = require('path');
 
 const indexRoutes = require('./routes/index');
@@ -8,7 +7,6 @@ const filesRoutes = require('./routes/files');
 const apiRoutes = require('./routes/api');
 const adminRoutes = require('./routes/admin');
 const actionsRoutes = require('./routes/actions');
-const { setupRateLimiter } = require('./middleware/rateLimit');
 
 const app = express();
 const PORT = process.env.port || 3000;
@@ -16,11 +14,8 @@ const PORT = process.env.port || 3000;
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-app.use(helmet());
-
-setupRateLimiter(app);
-
-app.use(express.static(path.join(__dirname, 'public')));
+const publicPath = path.join(__dirname, 'public');
+app.use(express.static(publicPath));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -40,7 +35,9 @@ app.use('/admin', adminRoutes);
 app.use('/actions', actionsRoutes);
 
 app.use(function(req, res) {
-  res.status(404).render('404');
+  res.status(404).render('404', {
+    title: '404 Not Found'
+  });
 });
 
 app.use(function(err, req, res, next) {
@@ -55,8 +52,10 @@ app.use(function(err, req, res, next) {
   });
 });
 
-app.listen(PORT, function() {
-  console.log('Server running on port ' + PORT);
-});
+if (require.main === module) {
+  app.listen(PORT, function() {
+    console.log('Server running on port ' + PORT);
+  });
+}
 
 module.exports = app;
